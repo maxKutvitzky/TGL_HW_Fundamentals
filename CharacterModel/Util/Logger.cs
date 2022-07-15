@@ -8,8 +8,7 @@ namespace CharacterModel.Util
 {
     public static class Logger
     {
-        //May need admin rights for default value  
-        private static string logFileName = Directory.GetCurrentDirectory();
+        private static string logFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
 
         public static void SetLogDirectory(string directory)
         {
@@ -17,7 +16,14 @@ namespace CharacterModel.Util
         }
         public static void CreateNewLogFile()
         {
-            using (FileStream fs = File.Create(logFileName));
+            try
+            {
+                using (FileStream fs = File.Create(logFileName)) ;
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                logFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
+            }
         }
         public static void LogMessage(string message)
         {
@@ -30,7 +36,7 @@ namespace CharacterModel.Util
             }
             catch (DirectoryNotFoundException ex)
             {
-                CreateNewLogFile();
+                logFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
             }
         }
     }
