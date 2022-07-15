@@ -17,7 +17,7 @@ namespace CharacterModel
         public string Name { get; }
         private int _health;
         private bool _isDead = false;
-        public bool IsDead { get => _isDead; private set => _isDead = value; }
+        public bool IsDead { get => _isDead; }
         protected abstract event Action<string> characterActionEvent;
         private event Action<string> innerCharacterEvent;
         protected abstract int Damage { get; }

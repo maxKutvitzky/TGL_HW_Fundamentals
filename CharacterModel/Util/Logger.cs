@@ -8,9 +8,30 @@ namespace CharacterModel.Util
 {
     public static class Logger
     {
+        //May need admin rights for default value  
+        private static string logFileName = Directory.GetCurrentDirectory();
+
+        public static void SetLogDirectory(string directory)
+        {
+            logFileName = directory + @"\BattleLog.txt";
+        }
+        public static void CreateNewLogFile()
+        {
+            using (FileStream fs = File.Create(logFileName));
+        }
         public static void LogMessage(string message)
         {
-            Console.WriteLine(message);
+            try
+            {
+                using (StreamWriter sw = File.AppendText(logFileName))
+                {
+                    sw.WriteLine(message);
+                }
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                CreateNewLogFile();
+            }
         }
     }
 }
