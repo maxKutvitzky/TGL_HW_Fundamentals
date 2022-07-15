@@ -11,7 +11,7 @@ namespace CharacterModel.Model
         private int Armor
         {
             get => _armor;
-            init => _armor = value >= 40 ? 40 : value;
+            init => _armor = value > 25 ? 25 : value;
         }
         protected override int Damage { get => random.Next(30, 60); }
         private readonly int _armor;
