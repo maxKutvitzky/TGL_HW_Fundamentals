@@ -17,7 +17,7 @@ namespace CharacterModel.Model
         public override void TakeDamage(int damage)
         {
             int damageBlocked = (int)(damage * _armor);
-            int damageTaken = (damage - damageBlocked);
+            int damageTaken = damage - damageBlocked;
             characterActionEvent?.Invoke($"{Name}: Blocking {damageBlocked} damage");
             if (damageTaken < 0)
             {

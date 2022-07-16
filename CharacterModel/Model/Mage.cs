@@ -14,13 +14,12 @@ namespace CharacterModel.Model
         public Mage(int health, string name) : base(health, name) { }
         public override void TakeDamage(int damage)
         {
-            int damageTaken = damage;
-            Health -= damageTaken;
+            Health -= damage;
             if (IsDead)
             {
                 return;
             }
-            characterActionEvent?.Invoke($"{Name}: Taking damage {damageTaken}, Health {Health}");
+            characterActionEvent?.Invoke($"{Name}: Taking damage {damage}, Health {Health}");
             if (Health <= 50)
             {
                 Heal();
