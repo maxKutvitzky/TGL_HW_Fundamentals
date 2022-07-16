@@ -52,8 +52,8 @@ namespace CharacterModel
         {
             Health = health;
             Name = name;
-            characterActionEvent += Logger.LogMessage;
-            innerCharacterEvent = Logger.LogMessage;
+            characterActionEvent += FileLogger.LogMessage;
+            innerCharacterEvent = FileLogger.LogMessage;
         }
         public abstract void TakeDamage(int damage);
 
