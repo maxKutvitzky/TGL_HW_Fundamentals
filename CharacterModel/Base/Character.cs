@@ -58,6 +58,9 @@ namespace CharacterModel
         public abstract void TakeDamage(int damage);
 
 
-        public abstract void Attack(Character character);
+        public virtual void Attack(Character character)
+        {
+            character.TakeDamage(Damage);
+        }
     }
 }
