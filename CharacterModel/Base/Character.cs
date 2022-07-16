@@ -46,6 +46,9 @@ namespace CharacterModel
 
         protected Character()
         {
+            Name = "NoNameCharacter";
+            characterActionEvent += FileLogger.LogMessage;
+            innerCharacterEvent = FileLogger.LogMessage;
         }
 
         protected Character(int health, string name)

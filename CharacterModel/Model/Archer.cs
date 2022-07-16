@@ -43,6 +43,6 @@ namespace CharacterModel.Model
             characterActionEvent?.Invoke($"{Name}: Shooting at {character.Name}");
         }
 
-        private bool isDodgeAttack() => random.NextDouble() <= _dodgeAttackChance ? true : false;
+        private bool isDodgeAttack() => random.NextDouble() <= _dodgeAttackChance;
     }
 }
