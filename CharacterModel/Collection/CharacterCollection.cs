@@ -17,6 +17,15 @@ namespace CharacterModel.Collection
         {
             get => _characters.Count;
         }
+
+        public Character GetWinner()
+        {
+            if (Count != 1)
+            {
+                return null;
+            }
+            return _characters.FirstOrDefault();
+        }
         public void RemoveDeathCharacters()
         {
             foreach (Character character in _characters)
@@ -35,6 +44,12 @@ namespace CharacterModel.Collection
             {
                 _ListActions.Invoke($"{character.Name} is joining the battle");
             }
+        }
+
+        public void Clear()
+        {
+            _characters.Clear();
+            _ListActions.Invoke($"The battle is cleared");
         }
         public void Remove(Character character)
         {

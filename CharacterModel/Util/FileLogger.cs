@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CharacterModel.Util
 {
-    public static class FileLogger
+    internal static class FileLogger
     {
         private static string logFileName = defautDirectory;
         private static readonly string defautDirectory = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
