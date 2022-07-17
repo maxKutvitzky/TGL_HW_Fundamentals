@@ -42,7 +42,7 @@ namespace CharacterModel.Collection
             }
             foreach (Character character in deadCharacters)
             {
-                _characters.Remove(character);
+                Remove(character);
             }
         }
 
