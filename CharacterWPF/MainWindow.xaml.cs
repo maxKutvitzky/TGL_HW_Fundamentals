@@ -31,7 +31,7 @@ namespace CharacterWPF
         {
             InitializeComponent();
             showBattleAction = ShowCharacters;
-            FileLogger.NewLog(Directory.GetCurrentDirectory() + @"\BattleLog.txt");
+            FileLogger.NewLog();
         }
         private void buttonWarrior_Click(object sender, RoutedEventArgs e)
         {
@@ -59,6 +59,7 @@ namespace CharacterWPF
         }
         private void buttonFight_Click(object sender, RoutedEventArgs e)
         {
+            ClearWinnerPanel();
             if (_battleManager.GetCharacters().Count <= 1)
             {
                 MessageBox.Show("Not enough characters to fight!");

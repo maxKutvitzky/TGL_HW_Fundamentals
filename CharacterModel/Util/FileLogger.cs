@@ -9,34 +9,32 @@ namespace CharacterModel.Util
 {
     public static class FileLogger
     {
-        private static readonly string defautFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
-        private static string logFileName = defautFileName;
-
+        private static readonly string logFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
+        /// <summary>
+        /// Gets log file location
+        /// </summary>
+        /// <returns>Current log file location</returns>
         public static string GetLogLocation()
         {
             return logFileName;
         }
-
+        /// <summary>
+        /// Opening log file as new process
+        /// </summary>
         public static void OpenLog()
         {
-            Process.Start("notepad.exe", defautFileName);
+            Process.Start("notepad.exe", logFileName);
         }
-        public static void NewLog(string directory)
+        /// <summary>
+        /// Public method for creating new log file
+        /// </summary>
+        public static void NewLog()
         {
-            try
-            {
-                CreateNewLogFile();
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                logFileName = defautFileName;
-            }
+            CreateNewLogFile();
         }
-
-        private static void SetLogDirectory(string directory)
-        {
-            logFileName = directory + @"\BattleLog.txt";
-        }
+        /// <summary>
+        /// Creates new log file in specific directory
+        /// </summary>
         private static void CreateNewLogFile()
         {
             if (File.Exists(logFileName))
@@ -49,7 +47,10 @@ namespace CharacterModel.Util
                 File.Create(logFileName);
             }
         }
-
+        /// <summary>
+        /// Appends message to log file 
+        /// </summary>
+        /// <param name="message">Message for log</param>
         public static void LogMessage(string message)
         {
             using StreamWriter sw = File.AppendText(logFileName);

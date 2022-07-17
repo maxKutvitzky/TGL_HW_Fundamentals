@@ -15,6 +15,10 @@ namespace CharacterModel.Model
         public Warrior(int health, string name) : base(health, name)
         {
         }
+        /// <summary>
+        /// Applying damage to warrior. Blocks 25% damage
+        /// </summary>
+        /// <param name="damage">Damage taken</param>
         public override void TakeDamage(int damage)
         {
             int damageBlocked = (int)(damage * _armor);
