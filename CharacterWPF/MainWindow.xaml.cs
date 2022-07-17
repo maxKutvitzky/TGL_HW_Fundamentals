@@ -62,6 +62,7 @@ namespace CharacterWPF
             ClearWinnerPanel();
             if (_battleManager.GetCharacters().Count <= 1)
             {
+                ClearBattlePanel();
                 MessageBox.Show("Not enough characters to fight!");
                 return;
             }
