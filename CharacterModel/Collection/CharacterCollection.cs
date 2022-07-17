@@ -17,23 +17,32 @@ namespace CharacterModel.Collection
         {
             get => _characters.Count;
         }
-
         public Character GetWinner()
         {
-            if (Count != 1)
+            if (Count < 1)
             {
                 return null;
             }
-            return _characters.FirstOrDefault();
+            Character winner = _characters.FirstOrDefault();
+            _ListActions.Invoke($"Winner is {winner.Name}");
+            return winner;
         }
+        /// <summary>
+        /// Removes all characters with isDead = true
+        /// </summary>
         public void RemoveDeathCharacters()
         {
+            List<Character> deadCharacters = new List<Character>();
             foreach (Character character in _characters)
             {
                 if (character.IsDead)
                 {
-                    _characters.Remove(character);
+                    deadCharacters.Add(character);
                 }
+            }
+            foreach (Character character in deadCharacters)
+            {
+                _characters.Remove(character);
             }
         }
 
@@ -61,6 +70,10 @@ namespace CharacterModel.Collection
             _characters.Add(character);
             _ListActions.Invoke($"{character.Name} is joining the battle");
         }
+        /// <summary>
+        /// Gets random element from collection
+        /// </summary>
+        /// <returns></returns>
         public Character GetRandom()
         {
             return _characters[_random.Next(_characters.Count)];

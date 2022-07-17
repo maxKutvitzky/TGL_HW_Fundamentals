@@ -1,0 +1,19 @@
+﻿<Window x:Class="CharacterWPF.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CharacterWPF"
+        mc:Ignorable="d"
+        Title="HelpWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <StackPanel>
+        <Label Content="Characters:"/>
+        <Label Content="Warrior: Blocks 25% damage, has attack from 30 to 60 units"/>
+        <Label Content="Archer: Has the ability to dodge attacks, has attack from 20 to 40 units"/>
+        <Label Content="Mage: Has the ability to heal for 30 hp if health is less than 50, has the same attack as the archer"/>
+        <Label Content="Logger:"/>
+        <Label Content="The logger records all events that occur before, during and after the battle."/>
+        <Label Content="It is possible to open a file with logs using the corresponding button in the menu at the top of the main window"></Label>
+        <Label Name="LoggerPath" Content="default log path"></Label>
+    </StackPanel>
+</Window>

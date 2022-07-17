@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CharacterWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Battle Royale" Height="460" Width="808" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <Menu >
+            <MenuItem Header="_Info">
+                <MenuItem x:Name="HelpMenu" Header="_Help" Click="HelpMenu_Click" />
+                <MenuItem x:Name="BattleLogMenu" Header="_Show BattleLog" Click="BattleLogMenu_Click"/>
+            </MenuItem>
+        </Menu>
+        <Label Content="Choose characters" Style="{StaticResource CommonLabel}"></Label>
+        <Border BorderBrush="Black" Style="{StaticResource CommonBorder}"></Border>
+        <StackPanel Orientation="Horizontal">
+            <Button Name="buttonWarrior" Content="Warrior" Style="{StaticResource CommonButton}" Click="buttonWarrior_Click"/>
+            <Button Name="buttonArcher" Content="Archer" Style="{StaticResource CommonButton}" Click="buttonArcher_Click"/>
+            <Button Name="buttonMage" Content="Mage" Style="{StaticResource CommonButton}" Click="buttonMage_Click"/>
+            <Button Name="buttonRandomFill" Content="Random fill" Style="{StaticResource CommonButton}" Click="buttonRandomFill_Click"/>
+            <Border BorderBrush="Black" Style="{StaticResource CommonBorder}"></Border>
+            <Button x:Name="buttonClear" Content="Clear" Style="{StaticResource SmallButton}" Click="buttonClear_Click" />
+        </StackPanel>
+        <Border BorderBrush="Black" Style="{StaticResource CommonBorder}"></Border>
+        <StackPanel Height="314">
+            <Label Content="Characters in battle" Style="{StaticResource CommonLabel}"   />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+            <StackPanel Orientation="Vertical" x:Name="BattlePanel"  Background="Aquamarine" CanVerticallyScroll="True" Height="100">
+                    <Label  Content="None" Style="{StaticResource CharacterLabel}"/>
+            </StackPanel>
+            </ScrollViewer>
+            <Button x:Name="buttonFight" Content="Fight" Style="{StaticResource SmallButton}" Click="buttonFight_Click"/>
+            <Label  Content="Winner" Style="{StaticResource CommonLabel}"/>
+            <StackPanel Orientation="Vertical" x:Name="WinnerPanel"  Background="Gold" CanVerticallyScroll="True"  Height="100" >
+            </StackPanel>
+            </StackPanel>
+    </StackPanel>
 </Window>

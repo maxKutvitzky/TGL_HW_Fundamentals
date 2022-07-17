@@ -1,37 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CharacterModel.Util
 {
-    internal static class FileLogger
+    public static class FileLogger
     {
-        private static string logFileName = defautDirectory;
-        private static readonly string defautDirectory = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
-
-        public static void NewLog(string directory)
+        private static readonly string logFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
+        /// <summary>
+        /// Gets log file location
+        /// </summary>
+        /// <returns>Current log file location</returns>
+        public static string GetLogLocation()
         {
-            try
-            {
-                SetLogDirectory(directory);
-                CreateNewLogFile();
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                logFileName = defautDirectory;
-            }
+            return logFileName;
         }
-
-        private static void SetLogDirectory(string directory)
+        /// <summary>
+        /// Opening log file as new process
+        /// </summary>
+        public static void OpenLog()
         {
-            logFileName = directory + @"\BattleLog.txt";
+            Process.Start("notepad.exe", logFileName);
         }
+        /// <summary>
+        /// Public method for creating new log file
+        /// </summary>
+        public static void NewLog()
+        {
+            CreateNewLogFile();
+        }
+        /// <summary>
+        /// Creates new log file in specific directory
+        /// </summary>
         private static void CreateNewLogFile()
         {
-            File.Create(logFileName);
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+                File.Create(logFileName);
+            }
+            else
+            {
+                File.Create(logFileName);
+            }
         }
+        /// <summary>
+        /// Appends message to log file 
+        /// </summary>
+        /// <param name="message">Message for log</param>
         public static void LogMessage(string message)
         {
             using StreamWriter sw = File.AppendText(logFileName);
