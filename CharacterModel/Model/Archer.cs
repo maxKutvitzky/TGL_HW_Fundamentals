@@ -8,6 +8,7 @@ namespace CharacterModel.Model
 {
     public class Archer : Character
     {
+        public override string ClassName { get; } = "Archer";
         protected override event Action<string> characterActionEvent;
         protected override int Damage { get => random.Next(20, 40); }
         private const double _dodgeAttackChance = 0.50;
@@ -39,8 +40,8 @@ namespace CharacterModel.Model
             {
                 return;
             }
-            base.Attack(character);
             characterActionEvent?.Invoke($"{Name}: Shooting at {character.Name}");
+            base.Attack(character);
         }
 
         private bool isDodgeAttack() => random.NextDouble() <= _dodgeAttackChance;

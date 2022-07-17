@@ -1,26 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CharacterModel.Util
 {
-    internal static class FileLogger
+    public static class FileLogger
     {
-        private static string logFileName = defautDirectory;
-        private static readonly string defautDirectory = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
+        private static readonly string defautFileName = Directory.GetCurrentDirectory() + @"\BattleLog.txt";
+        private static string logFileName = defautFileName;
 
+        public static string GetLogLocation()
+        {
+            return logFileName;
+        }
+
+        public static void OpenLog()
+        {
+            Process.Start("notepad.exe", defautFileName);
+        }
         public static void NewLog(string directory)
         {
             try
             {
-                SetLogDirectory(directory);
                 CreateNewLogFile();
             }
             catch (DirectoryNotFoundException ex)
             {
-                logFileName = defautDirectory;
+                logFileName = defautFileName;
             }
         }
 
@@ -30,8 +39,17 @@ namespace CharacterModel.Util
         }
         private static void CreateNewLogFile()
         {
-            File.Create(logFileName);
+            if (File.Exists(logFileName))
+            {
+                File.Delete(logFileName);
+                File.Create(logFileName);
+            }
+            else
+            {
+                File.Create(logFileName);
+            }
         }
+
         public static void LogMessage(string message)
         {
             using StreamWriter sw = File.AppendText(logFileName);

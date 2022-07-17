@@ -20,20 +20,27 @@ namespace CharacterModel.Collection
 
         public Character GetWinner()
         {
-            if (Count != 1)
+            if (Count < 1)
             {
                 return null;
             }
-            return _characters.FirstOrDefault();
+            Character winner = _characters.FirstOrDefault();
+            _ListActions.Invoke($"Winner is {winner.Name}");
+            return winner;
         }
         public void RemoveDeathCharacters()
         {
+            List<Character> deadCharacters = new List<Character>();
             foreach (Character character in _characters)
             {
                 if (character.IsDead)
                 {
-                    _characters.Remove(character);
+                    deadCharacters.Add(character);
                 }
+            }
+            foreach (Character character in deadCharacters)
+            {
+                _characters.Remove(character);
             }
         }
 

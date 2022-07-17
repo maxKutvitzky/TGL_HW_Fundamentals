@@ -10,6 +10,7 @@ namespace CharacterModel
     public abstract class Character
     {
         protected static Random random = new Random();
+        public abstract string ClassName { get;}
         protected virtual int HealthLimit
         {
             get => 100;

@@ -8,6 +8,7 @@ namespace CharacterModel.Model
 {
     public class Mage : Character
     {
+        public override string ClassName { get; } = "Mage";
         protected override event Action<string> characterActionEvent;
         private int _mana = 60;
         protected override int Damage { get => random.Next(20, 40); }
@@ -32,9 +33,8 @@ namespace CharacterModel.Model
             {
                 return;
             }
-            base.Attack(character);
             characterActionEvent?.Invoke($"{Name}: Attacking with magic {character.Name}");
-            
+            base.Attack(character);
         }
 
         private void Heal()

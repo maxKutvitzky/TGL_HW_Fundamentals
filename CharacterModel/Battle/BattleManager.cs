@@ -11,8 +11,33 @@ namespace CharacterModel.Battle
     public class BattleManager
     {
         private Random _random = new Random();
-        public CharacterCollection _characters = new CharacterCollection();
+        private CharacterCollection _characters = new CharacterCollection();
 
+        public CharacterCollection GetCharacters()
+        {
+            return _characters;
+        }
+
+        public void AddWarrior(string name)
+        {
+            Warrior warrior = new Warrior(100, name);
+            _characters.Add(warrior);
+        }
+        public void AddArcher(string name)
+        {
+            Archer archer = new Archer(100, name);
+            _characters.Add(archer);
+        }
+        public void AddMage(string name)
+        {
+            Mage mage = new Mage(100, name);
+            _characters.Add(mage);
+        }
+
+        public void ClearBattle()
+        {
+            _characters.Clear();
+        }
         public void RandomFillBattle(int quantity)
         {
             for (int i = 0; i < quantity; i++)
@@ -37,13 +62,27 @@ namespace CharacterModel.Battle
         {
             while (_characters.Count > 1)
             {
-                Character character1 = _characters.GetRandom();
-                Character character2 = _characters.GetRandom();
+                Character character1;
+                Character character2;
+                while (true)
+                {
+                    Character ch1 = _characters.GetRandom();
+                    Character ch2 = _characters.GetRandom();
+                    if (ch1 != ch2)
+                    {
+                        character1 = ch1;
+                        character2 = ch2;
+                        break;
+                    }
+                }
                 character1.Attack(character2);
                 character2.Attack(character1);
                 _characters.RemoveDeathCharacters();
             }
-            return _characters.GetWinner();
+
+            Character winner = _characters.GetWinner();
+            ClearBattle();
+            return winner;
         }
     }
 }
